@@ -26,9 +26,9 @@ plt.ylabel('Number of ham and spam messages')
 
 df.groupby('label').describe()
 
-df['lenght'] = df['message'].apply(len)
+df['length'] = df['message'].apply(len)
 
 
 mpl.rcParams['patch.force_edgecolor'] = True
 plt.style.use('seaborn-bright')
-df.hist(column = 'lenght', by = 'label', bins = 50, figsize = (11,5))
+df.hist(column = 'length', by = 'label', bins = 50, figsize = (11,5))
