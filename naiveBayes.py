@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pickle
 
 df = pd.read_csv('./dataset/spam.csv', encoding='latin-1')[['v1', 'v2']]
 df = df.rename(columns = {'v1':'label', 'v2':'message'})
@@ -69,8 +70,11 @@ x_train, x_test, y_train, y_test = train_test_split(df['message'], df['label'], 
 
 spam_filter.fit(x_train, y_train)
 
+pickle.dump(spam_filter, open('MNB.sav', 'wb'))
+
 """----------------prediction and inference-------------------"""
 predictions = spam_filter.predict(x_test)
+
 
 count = 0
 for i in range(len(y_test)):
@@ -78,7 +82,6 @@ for i in range(len(y_test)):
         count += 1
 print('Total number of test cases', len(y_test))
 print('Number of wrong of predictions', count)
-
 x_test[y_test != predictions]
 
 from sklearn.metrics import classification_report
@@ -87,5 +90,5 @@ print(classification_report(predictions, y_test))
 """-----------------------Testing-------------------"""
 def detect_spam(s):
     return spam_filter.predict([s])[0]
-detect_spam('Hey you, do you know Ricardo Milos. He is a Canadian male stripper. Please contact 3562361264 for concert tickets')
+detect_spam("SIX chances to win CASH! From 100 to 20,000 pounds txt> CSH11 and send to 87575. Cost 150p/day, 6days, 16+ TsandCs apply Reply HL 4 info")
 
