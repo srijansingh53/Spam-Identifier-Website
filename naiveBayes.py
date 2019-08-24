@@ -41,7 +41,8 @@ process ('It\'s holiday and we are playing cricket. Jeff is playing very well!!!
 from sklearn.feature_extraction.text import TfidfVectorizer
 tfidfv = TfidfVectorizer(analyzer=process)
 data = tfidfv.fit_transform(df['message'])
-
+tfidf_data = pd.DataFrame(data.toarray())
+tfidf_data.head()
 """-----viewing TFID Vectorizer results----------"""
 # testing TFID vectorization
 mess = df.iloc[2]['message']
@@ -65,11 +66,24 @@ spam_filter = Pipeline([
     ('classifier', MultinomialNB())                    # train on TFIDF vectors with Naive Bayes
 ])
 
+
+
 from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(df['message'], df['label'], test_size = 0.2, random_state = 42)
 
 spam_filter.fit(x_train, y_train)
 
+from joblib import dump
+dump(spam_filter, 'model.joblib')
+
+
+
+
+
+
+pkl_filename = "pickle_model.pkl"
+with open(pkl_filename, 'wb') as file:
+    pickle.dump(spam_filter, file)
 pickle.dump(spam_filter, open('MNB.sav', 'wb'))
 
 """----------------prediction and inference-------------------"""
