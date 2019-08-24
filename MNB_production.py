@@ -20,6 +20,7 @@ import pickle
 
 df = pd.read_csv('./dataset/spam.csv', encoding='latin-1')[['v1', 'v2']]
 df = df.rename(columns = {'v1':'label', 'v2':'message'})
+df['label'] = df['label'].replace('ham', 'Not a Spam')
 # df.head()
 
 """-------------------Some text preprocessing--------------------"""

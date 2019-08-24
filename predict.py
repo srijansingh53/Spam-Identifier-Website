@@ -17,7 +17,7 @@ from nltk.stem import WordNetLemmatizer
 
 df = pd.read_csv('./dataset/spam.csv', encoding='latin-1')[['v1', 'v2']]
 df = df.rename(columns = {'v1':'label', 'v2':'message'})
-
+df['label'] = df['label'].replace('ham', 'Not a Spam')
 # nltk.download('stopwords') #only if you have not downloaded the stopwords of nltk
 def preprocess_text(text):
     # remove all punctuation

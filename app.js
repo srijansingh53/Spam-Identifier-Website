@@ -8,11 +8,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.use('/test', (req, res, next) => {
-    const test = req.query.comment;
+    const test = req.query.input;
     var spawn = require("child_process").spawn;
     var process = spawn('python', ["./predict.py", test]);
 
     process.stdout.on('data', function(data) {
+
         console.log(data);
         res.send(data.toString());
     })

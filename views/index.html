@@ -2,18 +2,57 @@
 <html lang="en" dir="ltr">
  <head>
    <meta charset="utf-8">
-   <title>testing</title>
+   <title>Spam Identifier WebApp</title>
+     <style>
+         body {
+             background-color: #e1eaf7;
+             text-align: center;
+         }
+         textarea {
+             font-family: "Monospace", Lucida Console;
+             font-size: 20px;
+             border-radius: 5px;
+             
+         }
+         input {
+             position: relative;
+         }
+         div.relative {
+             position: relative;
+             
+         }
+         .button {
+             background-color: white; 
+             color: black;
+             padding: 10px 20px;
+             border-radius: 8px;
+             font-size: 16px;
+             border: 2px solid #4CAF50;
+         }
 
+        .button:hover {
+             background-color: #4CAF50;
+             color: white;
+         }
+         h1 {
+             color: #fc473a
+         }
+     
+     </style>
+
+     
  </head>
+   
  <body>
-    <header>
-        <form action="/test" id="testid">
-            <input type="submit">
-        </form>
-        <textarea rows="4" cols="50" name="comment" form="testid"></textarea>
-        
-    
-    </header>
-    
+     <h1> Spam Identifier</h1>
+     <div class="relative">
+         <textarea rows="20" cols="100" name="input" form="testid"></textarea>
+         <form action="/test" id="testid">
+             <button class="button" type="submit">Classify</button>             
+         </form>
+             
+     </div>
+     
+
 </body>
 </html>
