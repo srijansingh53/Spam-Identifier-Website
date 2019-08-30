@@ -5,7 +5,8 @@ const path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 app.use('/test', (req, res, next) => {
     const test = req.query.input;
@@ -13,15 +14,29 @@ app.use('/test', (req, res, next) => {
     var process = spawn('python', ["./predict.py", test]);
 
     process.stdout.on('data', function(data) {
+        var msg = true;
 
-        console.log(data);
-        res.send(data.toString());
+
+        if (data.toString().slice(0, 4) == "spam") {
+            msg = false;
+
+        }
+        res.render('index', {
+            popUp: true,
+            msgClass: msg
+        });
+
     })
+
+
 });
 
 
 app.use('/', (req, res, next) => {
-    res.sendFile(path.join(__dirname, 'views', 'index.html'));
+    res.render('index', {
+        popUp: false,
+        msgClass: false
+    });
 });
 
 app.listen(3000);

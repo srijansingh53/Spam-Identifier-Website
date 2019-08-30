@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Spam Identifier WebApp</title>
+    <style>
+        body {
+            background-color: #e1eaf7;
+            text-align: center;
+        }
+        
+        textarea {
+            font-family: "Monospace", Lucida Console;
+            font-size: 17px;
+            border-radius: 5px;
+        }
+        
+        input {
+            position: relative;
+        }
+        
+        div.relative {
+            position: relative;
+        }
+        
+        .button {
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            border: 2px solid #4CAF50;
+        }
+        
+        .button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        h1 {
+            color: #fc473a
+        }
+        
+        .user-message {
+            margin: auto;
+            margin-bottom: 1rem;
+            width: 20%;
+            border: 1px solid #4771fa;
+            padding: 0.5rem;
+            border-radius: 3px;
+            background: #b9c9ff;
+            color: #0000CD;
+            text-align: center;
+        }
+        
+        .user-message-err {
+            margin: auto;
+            margin-bottom: 1rem;
+            width: 20%;
+            border: 1px solid #4771fa;
+            padding: 0.5rem;
+            border-radius: 3px;
+            /*background: #b9c9ff;
+             color: #0000CD;
+             */
+            border-color: red;
+            background: rgb(255, 176, 176);
+            color: red;
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <h1> Spam Identifier</h1><br>
+
+    <% if (popUp && msgClass) { %>
+        <div class=" user-message ">
+            <STRONG>Chill!</STRONG> Not a Spam</div><br>
+        <% } %>
+
+            <% if (popUp && (!msgClass)) { %>
+                <div class=" user-message-err ">
+                    <STRONG>Warning!</STRONG> Spam detected</div><br>
+                <% } %>
+
+                    <div class="relative">
+                        <textarea rows="20" cols="100" name="input" form="testid"></textarea>
+                        <form action="/test" id="testid"><br>
+                            <button class="button" type="submit">Classify</button>
+                        </form>
+
+                    </div>
+
+
+
+</body>
+
+</html>
